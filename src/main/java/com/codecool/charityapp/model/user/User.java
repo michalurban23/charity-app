@@ -21,13 +21,13 @@ public class User extends Person {
 //    @NotNull
 //    private String username;
 
-    @NotNull
+//    @NotNull
     private String email;
 
 //    @Transient
     private String password;
 
-    @NotNull
+//    @NotNull
     private String encryptedPassword;
 
     @Enumerated(EnumType.STRING)

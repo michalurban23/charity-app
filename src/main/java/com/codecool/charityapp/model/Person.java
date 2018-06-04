@@ -10,9 +10,9 @@ import javax.validation.constraints.NotNull;
 @Setter @Getter
 public abstract class Person {
 
-    @NotNull
+//    @NotNull
     private String firstName;
 
-    @NotNull
+//    @NotNull
     private String lastName;
 }
