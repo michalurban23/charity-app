@@ -1,4 +1,4 @@
-package com.codecool.charityapp.model.caller;
+package com.codecool.charityapp.model.contact;
 
 import com.codecool.charityapp.model.Person;
 import lombok.*;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString @EqualsAndHashCode(callSuper = false)
-public class Caller extends Person {
+public class Contact extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

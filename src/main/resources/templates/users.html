@@ -12,39 +12,25 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')">Password!!!</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Password!!!</th>
                     <th>Role</th>
-                    <th sec:authorize="hasAnyRole('ROLE_ADMIN, ROLE_USER')">View</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')">Edit</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')">Delete</th>
+                    <th sec:authorize="hasAnyAuthority('ADMIN, USER')">View</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
                 </tr>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"><a href="/user/${user.id}">Id</a></td>
                     <td th:text="${user.firstName}">data</td>
                     <td th:text="${user.lastName}">data</td>
                     <td th:text="${user.email}">data</td>
-                    <td th:text="${user.password}" sec:authorize="hasRole('ROLE_ADMIN')">data</td>
+                    <td th:text="${user.password}" sec:authorize="hasAuthority('ADMIN')">data</td>
                     <td th:text="${user.role}">data</td>
-                    <td><a th:href="${ '/users/' + user.id}" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">View</a></td>
-                    <td><a th:href="${'/users/edit/' + user.id}" sec:authorize="hasRole('ROLE_ADMIN')">Edit</a></td>
-                    <td><a th:href="${'/users/delete/' + user.id}" sec:authorize="hasRole('ROLE_ADMIN')">Delete</a></td>
+                    <td><a th:href="${ '/users/' + user.id}" sec:authorize="hasAnyAuthority('ADMIN', 'USER')">View</a></td>
+                    <td><a th:href="${'/users/edit/' + user.id}" sec:authorize="hasAuthority('ADMIN')">Edit</a></td>
+                    <td><a th:href="${'/users/delete/' + user.id}" sec:authorize="hasAuthority('ADMIN')">Delete</a></td>
                 </tr>
             </table>
         </div>
     </div>
-
-<!--<div sec:authorize="isAuthenticated()">-->
-<!--This content is only shown to authenticated users.-->
-<!--<div th:text="${#authentication.name}">-->
-<!--The value of the "name" property of the authentication object should appear here.-->
-<!--</div>-->
-<!--</div>-->
-<!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
-<!--This content is only shown to administrators.-->
-<!--</div>-->
-<!--<div sec:authorize="hasRole('ROLE_USER')">-->
-<!--This content is only shown to users.-->
-<!--</div>-->
-
 </body>
 </html>

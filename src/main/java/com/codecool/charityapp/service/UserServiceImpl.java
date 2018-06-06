@@ -3,18 +3,19 @@ package com.codecool.charityapp.service;
 import com.codecool.charityapp.model.user.User;
 import com.codecool.charityapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private UserRepository repo;
-    private EncryptionService encryptionService;
+    private PasswordEncoder encoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository repo, EncryptionService encryptionService) {
+    public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
         this.repo = repo;
-        this.encryptionService = encryptionService;
+        this.encoder = encoder;
     }
 
     @Override
@@ -34,9 +35,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
-        if (user.getPassword() != null) {
-            user.setEncryptedPassword(encryptionService.encryptString(user.getPassword()));
+        if (user.getPassword() == null) {
+            user.setPassword("password");
         }
+        user.setEncryptedPassword(encoder.encode(user.getPassword()));
         return repo.save(user);
     }
 

@@ -18,16 +18,10 @@ public class User extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @NotNull
-//    private String username;
-
-//    @NotNull
-    private String email;
-
-//    @Transient
+    @Transient
     private String password;
 
-//    @NotNull
+    @NotNull
     private String encryptedPassword;
 
     @Enumerated(EnumType.STRING)
