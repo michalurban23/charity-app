@@ -54,4 +54,10 @@ public class UserDetailsImpl implements UserDetails {
         auths.add(new SimpleGrantedAuthority(user.getRole().toString()));
         return auths;
     }
+
+    @Override
+    public String toString() {
+
+        return this.getUsername();
+    }
 }
