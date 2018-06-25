@@ -1,4 +1,4 @@
-package com.codecool.charityapp;
+package com.codecool.charityapp.utils;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,6 +18,6 @@ public class MyEncoder implements PasswordEncoder {
 
     private String applyEncoding(String s) {
 
-        return new StringBuilder(s).append(s.charAt(1)).reverse().append(s.charAt(1)).toString();
+        return new StringBuilder(s).reverse().toString();
     }
 }

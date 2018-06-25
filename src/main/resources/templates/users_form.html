@@ -29,11 +29,6 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Role :</label>
                 <div class="col-sm-10">
-                    <!--<select name="roles" class="form-control" th:field="*{role}">-->
-                        <!--<option value="COORDINATOR">COORDINATOR</option>-->
-                        <!--<option value="CONSULTANT">CONSULTANT</option>-->
-                        <!--<option value="VISOR">VISOR</option>-->
-                    <!--</select>-->
                     <select name="roles" class="form-control" th:field="*{role}">
                         <option th:each="role : ${T(com.codecool.charityapp.model.user.Role).values()}"
                                 th:value="${role}"

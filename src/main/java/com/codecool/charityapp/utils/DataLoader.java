@@ -1,4 +1,4 @@
-package com.codecool.charityapp;
+package com.codecool.charityapp.utils;
 
 import com.codecool.charityapp.model.user.Role;
 import com.codecool.charityapp.model.user.User;
