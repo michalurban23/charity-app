@@ -8,5 +8,6 @@ public interface UserService {
     User getUserById(Integer id);
     User getUserByEmail(String email);
     User saveUser(User user);
+    User updateUser(User oldData, User newData);
     void deleteUser(Integer id);
 }

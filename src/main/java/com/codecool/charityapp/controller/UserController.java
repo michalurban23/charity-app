@@ -3,6 +3,8 @@ package com.codecool.charityapp.controller;
 import com.codecool.charityapp.model.user.User;
 import com.codecool.charityapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,22 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/profile")
+    public String editProfile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+
+        User user = userService.getUserByEmail(userDetails.getUsername());
+        user.setPassword(userDetails.getPassword());
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
+    @PostMapping("/profile")
+    public String saveData(User newData, @AuthenticationPrincipal UserDetails userDetails) {
+        User oldData = userService.getUserByEmail(userDetails.getUsername());
+        userService.updateUser(oldData, newData);
+        return "redirect:/profile";
     }
 
     @GetMapping("/users/{id}")

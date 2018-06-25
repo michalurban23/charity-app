@@ -2,7 +2,7 @@ package com.codecool.charityapp.utils;
 
 import com.codecool.charityapp.model.user.Role;
 import com.codecool.charityapp.model.user.User;
-import com.codecool.charityapp.repository.CallerRepository;
+import com.codecool.charityapp.repository.ContactRepository;
 import com.codecool.charityapp.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,14 +18,14 @@ import java.util.Arrays;
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private UserRepository userRepo;
-    private CallerRepository callerRepo;
+    private ContactRepository contactRepo;
     private PasswordEncoder encoder;
     private static final Logger log = LoggerFactory.getLogger(DataLoader.class);
 
     @Autowired
-    public DataLoader(UserRepository userRepo, CallerRepository callerRepo, PasswordEncoder encoder) {
+    public DataLoader(UserRepository userRepo, ContactRepository contactRepo, PasswordEncoder encoder) {
         this.userRepo = userRepo;
-        this.callerRepo = callerRepo;
+        this.contactRepo = contactRepo;
         this.encoder = encoder;
     }
 
@@ -34,22 +34,25 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         User user1 = User.builder()
                 .encryptedPassword(encoder.encode("password"))
+                .newlyRegistered(false)
                 .role(Role.COORDINATOR).build();
-        user1.setEmail("email@email.com");
+        user1.setEmail("coordinator@email.com");
         user1.setFirstName("Jan");
         user1.setLastName("Kowalski");
 
         User user2 = User.builder()
                 .encryptedPassword(encoder.encode("password"))
+                .newlyRegistered(false)
                 .role(Role.CONSULTANT).build();
-        user2.setEmail("wololo@email.com");
+        user2.setEmail("consultant@email.com");
         user2.setFirstName("Janek");
         user2.setLastName("Wiśniewski");
 
         User user3 = User.builder()
                 .encryptedPassword(encoder.encode("password"))
+                .newlyRegistered(false)
                 .role(Role.VISOR).build();
-        user3.setEmail("justuser@email.com");
+        user3.setEmail("visor@email.com");
         user3.setFirstName("Adam");
         user3.setLastName("Nowak");
 

@@ -15,6 +15,7 @@
                             <li><a href="#" th:href="@{/users/new}" sec:authorize="hasAuthority('COORDINATOR')">Add User</a></li>
                             <li><a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Sign In</a></li>
                             <li><a sec:authorize="isAuthenticated()"><strong>Welcome <span sec:authentication="name"></span></strong></a></li>
+                            <li><a href="#" th:href="@{/profile}" sec:authorize="isAuthenticated()" class="fa fa-cog fa-2x"></a></li>
                             <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Sign Out</a></li>
                         </ul>
                     </div>
