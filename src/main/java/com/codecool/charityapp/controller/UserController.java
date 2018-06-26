@@ -1,5 +1,7 @@
 package com.codecool.charityapp.controller;
 
+import com.codecool.charityapp.model.PasswordDTO;
+import com.codecool.charityapp.model.message.Message;
 import com.codecool.charityapp.model.user.User;
 import com.codecool.charityapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
@@ -22,6 +25,7 @@ public class UserController {
     @GetMapping("/profile")
     public String editProfile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 
+        System.out.println("hey");
         User user = userService.getUserByEmail(userDetails.getUsername());
         user.setPassword(userDetails.getPassword());
         model.addAttribute("user", user);
@@ -33,6 +37,24 @@ public class UserController {
         User oldData = userService.getUserByEmail(userDetails.getUsername());
         userService.updateUser(oldData, newData);
         return "redirect:/profile";
+    }
+
+    @PostMapping("/password")
+    public String savePassword(PasswordDTO newPass, @AuthenticationPrincipal UserDetails userDetails, RedirectAttributes redirectAttributes) {
+        User user = userService.getUserByEmail(userDetails.getUsername());
+        newPass.setUser(user);
+        Message message = userService.updatePassword(newPass);
+        redirectAttributes.addFlashAttribute("message", message);
+        return "redirect:/password";
+    }
+
+    @GetMapping("/password")
+    public String changePassword(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+
+        User user = userService.getUserByEmail(userDetails.getUsername());
+        user.setPassword(userDetails.getPassword());
+        model.addAttribute("passwordDTO", new PasswordDTO());
+        return "password";
     }
 
     @GetMapping("/users/{id}")

@@ -1,5 +1,7 @@
 package com.codecool.charityapp.service;
 
+import com.codecool.charityapp.model.message.Message;
+import com.codecool.charityapp.model.PasswordDTO;
 import com.codecool.charityapp.model.user.User;
 
 public interface UserService {
@@ -10,4 +12,5 @@ public interface UserService {
     User saveUser(User user);
     User updateUser(User oldData, User newData);
     void deleteUser(Integer id);
+    Message updatePassword(PasswordDTO newData);
 }
