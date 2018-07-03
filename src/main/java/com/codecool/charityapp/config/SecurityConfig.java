@@ -29,10 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
+                .antMatchers("/password").authenticated()
                 .antMatchers("/users/new", "/users/delete/**", "/users/edit/**").hasAuthority("COORDINATOR")
                 .antMatchers("/").permitAll()
                 .antMatchers("/webjars/**", "/css/**", "/console/**", "/403", "/404").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().hasAnyAuthority("COORDINATOR", "CONSULTANT")
                 .and()
             .formLogin()
                 .defaultSuccessUrl("/")

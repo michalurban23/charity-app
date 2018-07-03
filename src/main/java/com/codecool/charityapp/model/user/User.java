@@ -26,9 +26,6 @@ public class User extends Person {
     @NotNull
     private String encryptedPassword;
 
-    @ColumnDefault(value = "true")
-    private boolean newlyRegistered;
-
     @Enumerated(EnumType.STRING)
     private Role role;
 }

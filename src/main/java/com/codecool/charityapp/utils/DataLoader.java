@@ -34,7 +34,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         User user1 = User.builder()
                 .encryptedPassword(encoder.encode("password"))
-                .newlyRegistered(false)
                 .role(Role.COORDINATOR).build();
         user1.setEmail("coordinator@email.com");
         user1.setFirstName("Jan");
@@ -42,7 +41,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         User user2 = User.builder()
                 .encryptedPassword(encoder.encode("password"))
-                .newlyRegistered(false)
                 .role(Role.CONSULTANT).build();
         user2.setEmail("consultant@email.com");
         user2.setFirstName("Janek");
@@ -50,16 +48,23 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         User user3 = User.builder()
                 .encryptedPassword(encoder.encode("password"))
-                .newlyRegistered(false)
                 .role(Role.VISOR).build();
         user3.setEmail("visor@email.com");
         user3.setFirstName("Adam");
         user3.setLastName("Nowak");
 
-        userRepo.saveAll(Arrays.asList(user1, user2, user3));
-        log.info("Saved 3 users");
+        User user4 = User.builder()
+                .encryptedPassword(encoder.encode("password"))
+                .role(Role.CONSULTANT_NEW).build();
+        user4.setEmail("new@email.com");
+        user4.setFirstName("Stefan");
+        user4.setLastName("Batory");
+
+        userRepo.saveAll(Arrays.asList(user1, user2, user3, user4));
+        log.info("Saved 4 users");
         log.info(user1.getEmail());
         log.info(user2.getEmail());
         log.info(user3.getEmail());
+        log.info(user4.getEmail());
     }
 }

@@ -3,6 +3,7 @@ package com.codecool.charityapp.service;
 import com.codecool.charityapp.dao.UserDetailsImpl;
 import com.codecool.charityapp.model.message.Message;
 import com.codecool.charityapp.model.PasswordDTO;
+import com.codecool.charityapp.model.user.Role;
 import com.codecool.charityapp.model.user.User;
 import com.codecool.charityapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +77,21 @@ public class UserServiceImpl implements UserService {
 
         if (isPassCorrect(newPass) && newPass.isMatching() && newPass.isNew()) {
             user.setEncryptedPassword(encoder.encode(newPass.getNewPass()));
+            updateRole(user);
             repo.save(user);
             return new Message("Hasło zostało zmienione.", SUCCESS);
         } else {
             return new Message("Nie udało się zmienić hasła. Spróbuj ponownie.", WARNING);
+        }
+    }
+
+    private void updateRole(User user) {
+
+        if (user.getRole().equals(Role.COORDINTATOR_NEW)) {
+            user.setRole(Role.COORDINATOR);
+        }
+        if (user.getRole().equals(Role.CONSULTANT_NEW)) {
+            user.setRole(Role.CONSULTANT);
         }
     }
 
@@ -100,7 +112,6 @@ public class UserServiceImpl implements UserService {
 
         oldData.setFirstName(newData.getFirstName());
         oldData.setLastName(newData.getLastName());
-        oldData.setNewlyRegistered(false);
         oldData.setEmail(newData.getEmail());
     }
 }

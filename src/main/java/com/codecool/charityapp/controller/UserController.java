@@ -25,7 +25,6 @@ public class UserController {
     @GetMapping("/profile")
     public String editProfile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 
-        System.out.println("hey");
         User user = userService.getUserByEmail(userDetails.getUsername());
         user.setPassword(userDetails.getPassword());
         model.addAttribute("user", user);
@@ -34,6 +33,7 @@ public class UserController {
 
     @PostMapping("/profile")
     public String saveData(User newData, @AuthenticationPrincipal UserDetails userDetails) {
+
         User oldData = userService.getUserByEmail(userDetails.getUsername());
         userService.updateUser(oldData, newData);
         return "redirect:/profile";
@@ -41,6 +41,7 @@ public class UserController {
 
     @PostMapping("/password")
     public String savePassword(PasswordDTO newPass, @AuthenticationPrincipal UserDetails userDetails, RedirectAttributes redirectAttributes) {
+
         User user = userService.getUserByEmail(userDetails.getUsername());
         newPass.setUser(user);
         Message message = userService.updatePassword(newPass);
