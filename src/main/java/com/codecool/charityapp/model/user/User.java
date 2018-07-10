@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString @EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false)
 public class User extends Person {
 
     @Id
@@ -28,4 +28,13 @@ public class User extends Person {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Override
+    public String toString() {
+
+        return "User{" + "id=" + id +
+                ", password='" + password + '\'' +
+                ", encryptedPassword='" + encryptedPassword + '\'' +
+                ", role=" + role + "} " + super.toString();
+    }
 }

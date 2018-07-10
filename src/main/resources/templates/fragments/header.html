@@ -13,6 +13,8 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#" th:href="@{/users}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Users</a></li>
                             <li><a href="#" th:href="@{/users/new}" sec:authorize="hasAuthority('COORDINATOR')">Add User</a></li>
+                            <li><a href="#" th:href="@{/contacts}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Contacts</a></li>
+                            <li><a href="#" th:href="@{/contacts/new}" sec:authorize="hasAuthority('COORDINATOR')">Add Contact</a></li>
                             <li><a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Sign In</a></li>
                             <li><a sec:authorize="isAuthenticated()"><strong>Welcome <span sec:authentication="name"></span></strong></a></li>
                             <li><a href="#" th:href="@{/password}" sec:authorize="hasAnyAuthority('CONSULTANT_NEW', 'COORDINATOR_NEW')">Change Your Password!</a></li>

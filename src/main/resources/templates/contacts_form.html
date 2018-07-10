@@ -4,11 +4,10 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <h2>User Details</h2>
+    <h2>Contact Details</h2>
     <div>
-        <form class="form-horizontal" th:object="${user}" th:action="@{/users}" method="post">
+        <form class="form-horizontal" th:object="${contact}" th:action="@{/contacts}" method="post">
             <input type="hidden" th:field="*{id}"/>
-            <input type="hidden" th:field="*{encryptedPassword}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">First Name:</label>
                 <div class="col-sm-10">
@@ -28,14 +27,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Role :</label>
+                <label class="col-sm-2 control-label">Phone</label>
                 <div class="col-sm-10">
-                    <select name="roles" class="form-control" th:field="*{role}">
-                        <option th:each="role : ${T(com.codecool.charityapp.model.user.Role).values()}" th:unless="${role.isNew()}"
-                                th:value="${role}"
-                                th:text="${role}">
-                        </option>
-                    </select>
+                    <input type="text" class="form-control" th:field="*{phoneNumber}"/>
                 </div>
             </div>
             <div class="row">

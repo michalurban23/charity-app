@@ -31,7 +31,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
                        AccessDeniedException e) throws IOException, ServletException {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        GrantedAuthority newCoordinator = new SimpleGrantedAuthority(Role.COORDINTATOR_NEW.toString());
+        GrantedAuthority newCoordinator = new SimpleGrantedAuthority(Role.COORDINATOR_NEW.toString());
         GrantedAuthority newConsultant = new SimpleGrantedAuthority(Role.CONSULTANT_NEW.toString());
 
         if (auth != null) {

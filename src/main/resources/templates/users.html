@@ -13,9 +13,6 @@
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <!--<th sec:authorize="hasAnyAuthority('COORDINATOR, CONSULTANT')">View</th>-->
-                    <!--<th sec:authorize="hasAuthority('COORDINATOR')">Edit</th>-->
-                    <!--<th sec:authorize="hasAuthority('COORDINATOR')">Delete</th>-->
                 </tr>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"><a href="/user/${user.id}">Id</a></td>

@@ -6,6 +6,7 @@ import com.codecool.charityapp.model.PasswordDTO;
 import com.codecool.charityapp.model.user.Role;
 import com.codecool.charityapp.model.user.User;
 import com.codecool.charityapp.repository.UserRepository;
+import com.codecool.charityapp.utils.RandomPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,12 +22,14 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository repo;
     private PasswordEncoder encoder;
+    private EmailServiceImpl mailSender;
     private UserDetailsService userDetailsService;
 
     @Autowired
-    public UserServiceImpl(UserRepository repo, PasswordEncoder encoder, UserDetailsService userDetailsService) {
+    public UserServiceImpl(UserRepository repo, PasswordEncoder encoder, EmailServiceImpl mailSender, UserDetailsService userDetailsService) {
         this.repo = repo;
         this.encoder = encoder;
+        this.mailSender = mailSender;
         this.userDetailsService = userDetailsService;
     }
 
@@ -47,11 +50,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
-        if (user.getPassword() == null) {
-            user.setPassword("password");
+
+        if (user.getId() == null) {
+            user.setPassword(RandomPassword.create());
+            downgradeRole(user);
+            sendRegistrationEmail(user);
+            user.setEncryptedPassword(encoder.encode(user.getPassword()));
+        } else {
+            updateRole(user);
         }
-        user.setEncryptedPassword(encoder.encode(user.getPassword()));
         return repo.save(user);
+    }
+
+    private void sendRegistrationEmail(User user) {
+        mailSender.sendSimpleMessage(user.getEmail(), "Your Password", user.getPassword());
     }
 
     @Override
@@ -77,7 +89,7 @@ public class UserServiceImpl implements UserService {
 
         if (isPassCorrect(newPass) && newPass.isMatching() && newPass.isNew()) {
             user.setEncryptedPassword(encoder.encode(newPass.getNewPass()));
-            updateRole(user);
+            upgradeRole(user);
             repo.save(user);
             return new Message("Hasło zostało zmienione.", SUCCESS);
         } else {
@@ -85,14 +97,34 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private void updateRole(User user) {
+    private void upgradeRole(User user) {
 
-        if (user.getRole().equals(Role.COORDINTATOR_NEW)) {
+        if (user.getRole().equals(Role.COORDINATOR_NEW)) {
             user.setRole(Role.COORDINATOR);
         }
         if (user.getRole().equals(Role.CONSULTANT_NEW)) {
             user.setRole(Role.CONSULTANT);
         }
+    }
+
+    private void downgradeRole(User user) {
+
+        if (user.getRole().equals(Role.COORDINATOR)) {
+            user.setRole(Role.COORDINATOR_NEW);
+        }
+        if (user.getRole().equals(Role.CONSULTANT)) {
+            user.setRole(Role.CONSULTANT_NEW);
+        }
+    }
+
+    private void updateRole(User user) {
+
+        if (repo.findDistinctById(user.getId()).getRole().equals(Role.CONSULTANT_NEW)) {
+            user.setRole(Role.CONSULTANT_NEW);
+        } else if (repo.findDistinctById(user.getId()).getRole().equals(Role.COORDINATOR_NEW)) {
+            user.setRole(Role.COORDINATOR_NEW);
+        }
+
     }
 
     private boolean isPassCorrect(PasswordDTO pass) {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head lang="en"><!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/--></head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(contacts)}">
+        <h2>Contacts List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            <tr th:each="contact : ${contacts}">
+                <td th:text="${contact.id}"><a href="/contact/${contact.id}">Id</a></td>
+                <td th:text="${contact.firstName}">data</td>
+                <td th:text="${contact.lastName}">data</td>
+                <td th:text="${contact.email}">data</td>
+                <td th:text="${contact.phoneNumber}">data</td>
+                <td><a th:href="${'/contacts/' + contact.id}" sec:authorize="hasAnyAuthority('COORDINATOR', 'CONSULTANT')" class="fa fa-eye fa-2x"></a></td>
+                <td><a th:href="${'/contacts/edit/' + contact.id}" sec:authorize="hasAuthority('COORDINATOR')" class="fa fa-edit fa-2x"></a></td>
+                <td><a th:href="${'/contacts/delete/' + contact.id}" sec:authorize="hasAuthority('COORDINATOR')" class="fa fa-remove fa-2x"></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

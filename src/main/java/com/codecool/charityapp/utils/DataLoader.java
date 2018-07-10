@@ -1,5 +1,6 @@
 package com.codecool.charityapp.utils;
 
+import com.codecool.charityapp.model.contact.Contact;
 import com.codecool.charityapp.model.user.Role;
 import com.codecool.charityapp.model.user.User;
 import com.codecool.charityapp.repository.ContactRepository;
@@ -66,5 +67,20 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         log.info(user2.getEmail());
         log.info(user3.getEmail());
         log.info(user4.getEmail());
+
+        Contact contact1 = Contact.builder().phoneNumber("123456789").build();
+        contact1.setEmail("contact@email.com");
+        contact1.setFirstName("Kazimierz");
+        contact1.setLastName("Jagiellończyk");
+
+        Contact contact2 = Contact.builder().phoneNumber("123456780").build();
+        contact2.setEmail("anothercontact@email.com");
+        contact2.setFirstName("Władysław");
+        contact2.setLastName("Łokietek");
+
+        contactRepo.saveAll(Arrays.asList(contact1, contact2));
+        log.info("Saved 2 contacts");
+        log.info(contact1.getEmail());
+        log.info(contact2.getEmail());
     }
 }

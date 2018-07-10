@@ -11,14 +11,6 @@ public class PasswordDTO {
     private String newPass;
     private String confirmPass;
 
-    // public PasswordDTO(User user, String oldPass, String newPass, String confirmPass) {
-    //
-    //     this.user = user;
-    //     this.oldPass = oldPass;
-    //     this.newPass = newPass;
-    //     this.confirmPass = confirmPass;
-    // }
-
     public boolean isNew() {
         return !oldPass.equals(newPass);
     }
