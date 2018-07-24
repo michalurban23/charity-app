@@ -2,7 +2,7 @@ package com.codecool.charityapp.controller;
 
 import com.codecool.charityapp.model.PasswordDTO;
 import com.codecool.charityapp.model.message.Message;
-import com.codecool.charityapp.model.user.User;
+import com.codecool.charityapp.model.person.user.User;
 import com.codecool.charityapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

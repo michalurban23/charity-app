@@ -1,6 +1,6 @@
 package com.codecool.charityapp.error;
 
-import com.codecool.charityapp.model.user.Role;
+import com.codecool.charityapp.model.person.user.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -15,10 +15,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {

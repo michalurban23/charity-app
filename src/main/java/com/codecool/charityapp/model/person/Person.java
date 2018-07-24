@@ -1,4 +1,4 @@
-package com.codecool.charityapp.model;
+package com.codecool.charityapp.model.person;
 
 import lombok.Getter;
 import lombok.Setter;

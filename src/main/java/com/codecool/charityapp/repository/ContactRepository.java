@@ -1,6 +1,7 @@
 package com.codecool.charityapp.repository;
 
+import com.codecool.charityapp.model.person.contact.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ContactRepository extends JpaRepository<com.codecool.charityapp.model.contact.Contact, Integer> {
+public interface ContactRepository extends JpaRepository<Contact, Integer> {
 }

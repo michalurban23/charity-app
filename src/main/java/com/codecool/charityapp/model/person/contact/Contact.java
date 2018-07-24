@@ -1,6 +1,6 @@
-package com.codecool.charityapp.model.contact;
+package com.codecool.charityapp.model.person.contact;
 
-import com.codecool.charityapp.model.Person;
+import com.codecool.charityapp.model.person.Person;
 import lombok.*;
 
 import javax.persistence.*;

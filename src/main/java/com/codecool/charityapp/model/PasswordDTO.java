@@ -1,6 +1,6 @@
 package com.codecool.charityapp.model;
 
-import com.codecool.charityapp.model.user.User;
+import com.codecool.charityapp.model.person.user.User;
 import org.springframework.stereotype.Component;
 
 @Component

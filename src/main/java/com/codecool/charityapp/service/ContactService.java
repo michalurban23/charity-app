@@ -1,6 +1,6 @@
 package com.codecool.charityapp.service;
 
-import com.codecool.charityapp.model.contact.Contact;
+import com.codecool.charityapp.model.person.contact.Contact;
 import org.springframework.stereotype.Service;
 
 @Service

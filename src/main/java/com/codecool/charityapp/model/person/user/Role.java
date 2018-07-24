@@ -1,4 +1,4 @@
-package com.codecool.charityapp.model.user;
+package com.codecool.charityapp.model.person.user;
 
 public enum Role {
     COORDINATOR,

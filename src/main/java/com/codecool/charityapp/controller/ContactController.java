@@ -1,6 +1,6 @@
 package com.codecool.charityapp.controller;
 
-import com.codecool.charityapp.model.contact.Contact;
+import com.codecool.charityapp.model.person.contact.Contact;
 import com.codecool.charityapp.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

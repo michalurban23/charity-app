@@ -1,8 +1,8 @@
 package com.codecool.charityapp.utils;
 
-import com.codecool.charityapp.model.contact.Contact;
-import com.codecool.charityapp.model.user.Role;
-import com.codecool.charityapp.model.user.User;
+import com.codecool.charityapp.model.person.contact.Contact;
+import com.codecool.charityapp.model.person.user.Role;
+import com.codecool.charityapp.model.person.user.User;
 import com.codecool.charityapp.repository.ContactRepository;
 import com.codecool.charityapp.repository.UserRepository;
 import org.slf4j.Logger;
