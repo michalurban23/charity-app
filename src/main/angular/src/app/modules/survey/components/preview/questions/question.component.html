@@ -1,0 +1,19 @@
+<div [ngSwitch]="questionSchema.type">
+  <input-text-preview *ngSwitchCase="'input'"
+                          [questionSchema]="questionSchema"
+                          (valuesChange)="onValuesChange($event)">
+  </input-text-preview>
+  <textarea-preview *ngSwitchCase="'textarea'"
+                        [questionSchema]="questionSchema"
+                        (valuesChange)="onValuesChange($event)">
+  </textarea-preview>
+  <radiobox-preview *ngSwitchCase="'radiobox'"
+                          [questionSchema]="questionSchema"
+                          (valuesChange)="onValuesChange($event)">
+  </radiobox-preview>
+  <checkbox-preview *ngSwitchCase="'checkbox'"
+                        [questionSchema]="questionSchema"
+                        (valuesChange)="onValuesChange($event)">
+  </checkbox-preview>
+  <div *ngSwitchDefault>Choose question type!</div>
+</div>

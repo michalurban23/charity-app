@@ -1,0 +1,7 @@
+<div [ngSwitch]="questionSchema.type" >
+  <input-text-generator *ngSwitchCase="'input'" [questionSchema]="questionSchema" layout="column"></input-text-generator>
+  <textarea-generator *ngSwitchCase="'textarea'" [questionSchema]="questionSchema" layout="column"></textarea-generator>
+  <radiobox-generator *ngSwitchCase="'radiobox'"  [questionSchema]="questionSchema" layout="column"></radiobox-generator>
+  <checkbox-generator *ngSwitchCase="'checkbox'" [questionSchema]="questionSchema" layout="column">></checkbox-generator>
+  <div *ngSwitchDefault>Choose question type!</div>
+</div>

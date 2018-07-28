@@ -1,0 +1,18 @@
+<mat-card class="panel" class="sidebar">
+  <mat-card-title>Create element</mat-card-title>
+  <div *ngIf="!isPanelActive">
+    <button mat-fab color="primary" (click)="onCreate()"><mat-icon>add</mat-icon></button>
+  </div>
+  <div *ngIf="isPanelActive">
+    <mat-form-field>
+      <mat-select name="questionTypeSelect" [(ngModel)]="questionSchema.type" placeholder="Question type" required="required">
+        <mat-option *ngFor="let key of questionTypesKeys()" [value]="key">{{questionTypesValue(key)}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <app-generator [questionSchema]="questionSchema">
+    </app-generator>
+    <br>
+    <button mat-raised-button color="primary" [disabled]="!isValid()" *ngIf="!isCreated" (click)="save(questionSchema)"><mat-icon>done</mat-icon></button>
+    <button mat-raised-button color="accent" *ngIf="!isCreated" (click)="discard()"><mat-icon>clear</mat-icon></button>
+  </div>
+</mat-card>

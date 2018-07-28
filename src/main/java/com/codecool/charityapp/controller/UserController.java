@@ -1,6 +1,6 @@
 package com.codecool.charityapp.controller;
 
-import com.codecool.charityapp.model.PasswordDTO;
+import com.codecool.charityapp.dto.PasswordDTO;
 import com.codecool.charityapp.model.message.Message;
 import com.codecool.charityapp.model.person.user.User;
 import com.codecool.charityapp.service.UserService;

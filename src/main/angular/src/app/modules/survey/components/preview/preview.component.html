@@ -1,0 +1,28 @@
+<mat-card class="growing">
+  <mat-card-title *ngIf="!isEditable">
+    {{survey.name}}
+  </mat-card-title>
+  <mat-form-field *ngIf="isEditable">
+    <input matInput [(ngModel)]="survey.name" name="name" [required]="isEditable" [placeholder]="'Nazwa ankiety'">
+  </mat-form-field>
+  <form #surveyForm>
+    <div *ngFor="let question of survey.schema.fields; let i = index" class="horizontal">
+      <app-question [questionSchema]="question"
+                    (responseChange)="onResponseChange($event)"></app-question>
+      <div class="editButtons" *ngIf="isEditable">
+        <button mat-button (click)="edit(question)"><mat-icon>edit</mat-icon></button>
+        <button mat-button (click)="remove(question)"><mat-icon>delete</mat-icon></button>
+      </div>
+      <hr *ngIf="i < survey.schema.length - 1">
+    </div>
+  </form>
+  <br>
+  <button mat-raised-button color="primary"
+          *ngIf="!isEditable"
+          [disabled]="!surveyForm.checkValidity()"
+          (click)="send()"><mat-icon>send</mat-icon></button>
+  <button mat-raised-button color="primary"
+          *ngIf="isEditable"
+          [disabled]="!survey.name"
+          (click)="save()"><mat-icon>save</mat-icon></button>
+</mat-card>

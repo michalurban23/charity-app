@@ -1,0 +1,6 @@
+<mat-form-field>
+  <input matInput [(ngModel)]="value"
+         (input)="onChange()"
+         [placeholder]="questionSchema.label"
+         [required]="questionSchema.required">
+</mat-form-field>

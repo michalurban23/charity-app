@@ -1,0 +1,7 @@
+<mat-radio-group class="vertical"
+                 [(ngModel)]="value"
+                 (change)="onChange()">
+  <p>{{questionSchema.label}}<span *ngIf="questionSchema.required">*</span></p>
+  <mat-radio-button *ngFor="let response of questionSchema.values" [value]="response">{{response}}<br>
+  </mat-radio-button>
+</mat-radio-group>
