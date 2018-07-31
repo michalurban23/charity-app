@@ -42,9 +42,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        addUsers();
-        addContacts();
-        addCampaigns();
+        // addUsers();
+        // addContacts();
+        // addCampaigns();
     }
 
     private void addCampaigns() {

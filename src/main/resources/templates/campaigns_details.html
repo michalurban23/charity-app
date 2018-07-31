@@ -31,6 +31,12 @@
             </div>
         </form>
     </div>
+    <div sec:authorize="hasAuthority('COORDINATOR')">
+        <a href="http://localhost:8080/fc/survey;new=">Create Survey</a>
+    </div>
+    <div sec:authorize="hasAuthority('CONSULTANT')">
+        <a href="http://localhost:8080/fc/choose">Fill Survey</a>
+    </div>
     <div sec:authorize="hasAuthority('CONSULTANT')">
         <button id="rolled_contact" onclick="roll()">Roll Random Contact</button>
     </div>

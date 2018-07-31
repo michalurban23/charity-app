@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contacts/new", "/contacts/delete/**", "/contacts/edit/**").hasAuthority("COORDINATOR")
                 .antMatchers("/campaigns/new", "/campaigns/delete/**", "/campaigns/edit/**").hasAuthority("COORDINATOR")
                 .antMatchers("/").permitAll()
-                // .antMatchers("/fc/**").permitAll()
+                .antMatchers("/fc/**").permitAll()
                 .antMatchers("/webjars/**", "/css/**", "/js/**", "/console/**", "/403", "/404").permitAll()
                 .anyRequest().hasAnyAuthority("COORDINATOR", "CONSULTANT")
                 .and()
