@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="en">
-    <script type="text/javascript" th:src="@{/js/rollContact.js}"></script>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -32,13 +31,15 @@
         </form>
     </div>
     <div sec:authorize="hasAuthority('COORDINATOR')">
-        <a href="http://localhost:8080/fc/survey;new=">Create Survey</a>
+        <a href="#" th:href="${'http://localhost:8080/fc/survey;new=' + campaign.id}">Create Survey</a>
     </div>
     <div sec:authorize="hasAuthority('CONSULTANT')">
-        <a href="http://localhost:8080/fc/choose">Fill Survey</a>
+        <a href="#" th:href="${'/campaigns/' + campaign.id + '/roll'}"><button>Get Contact</button></a>
     </div>
-    <div sec:authorize="hasAuthority('CONSULTANT')">
-        <button id="rolled_contact" onclick="roll()">Roll Random Contact</button>
+    <div sec:authorize="hasAuthority('CONSULTANT')" th:if="${contact} != null">
+        <p>Name: <span th:text="${contact.getFullName()}"></span></p>
+        <p>Number: <a href="#" th:href="${'tel:048' + contact.getPhoneNumber()}" th:text="${contact.getPhoneNumber()}"></a></p>
+        <a href="#" th:href="${'http://localhost:8080/fc/survey;id=' + campaign.id + ';contactId=' + contact.id}"><button>Fill Survey</button></a>
     </div>
 </div>
 </body>

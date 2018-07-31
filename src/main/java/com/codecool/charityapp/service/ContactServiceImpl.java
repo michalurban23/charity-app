@@ -1,15 +1,15 @@
 package com.codecool.charityapp.service;
 
 import com.codecool.charityapp.model.person.contact.Contact;
-import com.codecool.charityapp.repository.ContactPersonRepository;
+import com.codecool.charityapp.repository.ContactRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContactServiceImpl implements ContactService {
 
-    private ContactPersonRepository repo;
+    private ContactRepository repo;
 
-    public ContactServiceImpl(ContactPersonRepository repo) {
+    public ContactServiceImpl(ContactRepository repo) {
 
         this.repo = repo;
     }

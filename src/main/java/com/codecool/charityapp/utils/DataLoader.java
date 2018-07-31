@@ -5,7 +5,7 @@ import com.codecool.charityapp.model.person.contact.Contact;
 import com.codecool.charityapp.model.person.user.Role;
 import com.codecool.charityapp.model.person.user.User;
 import com.codecool.charityapp.repository.CampaignRepository;
-import com.codecool.charityapp.repository.ContactPersonRepository;
+import com.codecool.charityapp.repository.ContactRepository;
 import com.codecool.charityapp.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +25,14 @@ import static com.codecool.charityapp.model.campaign.CampaignStatus.*;
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private UserRepository userRepo;
-    private ContactPersonRepository contactRepo;
+    private ContactRepository contactRepo;
     private CampaignRepository campaignRepo;
     private PasswordEncoder encoder;
     private List<Contact> contacts;
     private static final Logger log = LoggerFactory.getLogger(DataLoader.class);
 
     @Autowired
-    public DataLoader(UserRepository userRepo, ContactPersonRepository contactRepo, CampaignRepository campaignRepo, PasswordEncoder encoder) {
+    public DataLoader(UserRepository userRepo, ContactRepository contactRepo, CampaignRepository campaignRepo, PasswordEncoder encoder) {
         this.userRepo = userRepo;
         this.contactRepo = contactRepo;
         this.campaignRepo = campaignRepo;
