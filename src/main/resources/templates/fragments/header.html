@@ -25,8 +25,8 @@
                             <li><a href="#" th:href="@{/users}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Users</a></li>
                             <li><a href="#" th:href="@{/users/new}" sec:authorize="hasAuthority('COORDINATOR')">Add User</a></li>
                             <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a>||</a></li>
-                            <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a href="#" th:href="@{/contacts}">Contacts</a></li>
-                            <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a href="#" th:href="@{/contacts/new}">Add Contact</a></li>
+                            <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a href="#" th:href="@{/contactpersons}">Contacts</a></li>
+                            <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a href="#" th:href="@{/contactpersons/new}">Add Contact</a></li>
                             <li><a>||</a></li>
                             <li><a href="#" th:href="@{/campaigns}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Campaigns</a></li>
                             <li><a href="#" th:href="@{/campaigns/new}" sec:authorize="hasAuthority('COORDINATOR')">Add Campaign</a></li>

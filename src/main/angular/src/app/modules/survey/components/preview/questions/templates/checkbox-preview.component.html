@@ -1,9 +1,0 @@
-<div class="vertical">
-  <p>{{questionSchema.label}}<span *ngIf="questionSchema.required">*</span></p>
-  <mat-checkbox *ngFor="let response of questionSchema.values"
-                [(ngModel)]="values[response]"
-                (change)="onChange()"
-                [required]="questionSchema.required && !atLeastOne()">
-    {{response}}<br>
-  </mat-checkbox>
-</div>
