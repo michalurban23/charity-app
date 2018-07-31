@@ -10,49 +10,49 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class ContactController {
+public class ContactPersonController {
 
     private ContactService contactService;
 
     @Autowired
-    public ContactController(ContactService contactService) {
+    public ContactPersonController(ContactService contactService) {
 
         this.contactService = contactService;
     }
 
-    @GetMapping("/contacts/{id}")
+    @GetMapping("/contactPersons/{id}")
     public String showContact(@PathVariable Integer id, Model model) {
         model.addAttribute("contact", contactService.getContactById(id));
         return "contacts_details";
     }
 
-    @GetMapping("/contacts")
+    @GetMapping("/contactPersons")
     public String index(Model model) {
         model.addAttribute("contacts", contactService.index());
         return "contacts";
     }
 
-    @GetMapping("/contacts/new")
+    @GetMapping("/contactPersons/new")
     public String createContact(Model model) {
         model.addAttribute("contact", new Contact());
         return "contacts_form";
     }
 
-    @PostMapping("/contacts")
+    @PostMapping("/contactPersons")
     public String saveContact(Contact contact) {
         contactService.saveContact(contact);
-        return "redirect:/contacts/" + contact.getId();
+        return "redirect:/contactPersons/" + contact.getId();
     }
 
-    @GetMapping("/contacts/edit/{id}")
+    @GetMapping("/contactPersons/edit/{id}")
     public String editContact(@PathVariable Integer id, Model model) {
         model.addAttribute("contact", contactService.getContactById(id));
         return "contacts_form";
     }
 
-    @GetMapping("/contacts/delete/{id}")
+    @GetMapping("/contactPersons/delete/{id}")
     public String deleteContact(@PathVariable Integer id) {
         contactService.deleteContact(id);
-        return "redirect:/contacts";
+        return "redirect:/contactPersons";
     }
 }

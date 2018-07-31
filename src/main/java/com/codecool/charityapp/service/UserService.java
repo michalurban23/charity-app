@@ -1,7 +1,7 @@
 package com.codecool.charityapp.service;
 
 import com.codecool.charityapp.model.message.Message;
-import com.codecool.charityapp.model.PasswordDTO;
+import com.codecool.charityapp.dto.PasswordDTO;
 import com.codecool.charityapp.model.person.user.User;
 
 public interface UserService {

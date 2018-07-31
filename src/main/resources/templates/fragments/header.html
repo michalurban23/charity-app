@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head lang="en">
-    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../../fc/static/css/styles.css" />
 </head>
 <body>
     <div class="container">
@@ -11,15 +11,25 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
                         <ul class="nav navbar-nav">
-                            <li><a href="#" th:href="@{/users}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Users</a></li>
-                            <li><a href="#" th:href="@{/users/new}" sec:authorize="hasAuthority('COORDINATOR')">Add User</a></li>
-                            <li><a href="#" th:href="@{/contacts}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Contacts</a></li>
-                            <li><a href="#" th:href="@{/contacts/new}" sec:authorize="hasAuthority('COORDINATOR')">Add Contact</a></li>
                             <li><a href="#" th:href="@{/login}" sec:authorize="isAnonymous()">Sign In</a></li>
                             <li><a sec:authorize="isAuthenticated()"><strong>Welcome <span sec:authentication="name"></span></strong></a></li>
                             <li><a href="#" th:href="@{/password}" sec:authorize="hasAnyAuthority('CONSULTANT_NEW', 'COORDINATOR_NEW')">Change Your Password!</a></li>
                             <li><a href="#" th:href="@{/profile}" sec:authorize="isAuthenticated()" class="fa fa-cog fa-2x"></a></li>
                             <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container-fluid" sec:authorize="isAuthenticated()">
+                    <div class="navbar-header">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#" th:href="@{/users}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Users</a></li>
+                            <li><a href="#" th:href="@{/users/new}" sec:authorize="hasAuthority('COORDINATOR')">Add User</a></li>
+                            <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a>||</a></li>
+                            <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a href="#" th:href="@{/contactpersons}">Contacts</a></li>
+                            <li sec:authorize="hasAnyAuthority('COORDINATOR')"><a href="#" th:href="@{/contactpersons/new}">Add Contact</a></li>
+                            <li><a>||</a></li>
+                            <li><a href="#" th:href="@{/campaigns}" sec:authorize="hasAnyAuthority('CONSULTANT', 'COORDINATOR')">Campaigns</a></li>
+                            <li><a href="#" th:href="@{/campaigns/new}" sec:authorize="hasAuthority('COORDINATOR')">Add Campaign</a></li>
                         </ul>
                     </div>
                 </div>

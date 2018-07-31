@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head lang="en"><!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/--></head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(campaigns)}">
+        <h2>Contacts List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="campaign : ${campaigns}">
+                <td th:text="${campaign.id}"><a href="/campaign/${campaign.id}">Id</a></td>
+                <td th:text="${campaign.name}">data</td>
+                <td><a th:href="${'/campaigns/' + campaign.id}" sec:authorize="hasAnyAuthority('COORDINATOR', 'CONSULTANT')" class="fa fa-eye fa-2x"></a></td>
+                <td><a th:href="${'/campaigns/edit/' + campaign.id}" sec:authorize="hasAuthority('COORDINATOR')" class="fa fa-edit fa-2x"></a></td>
+                <td><a th:href="${'/campaigns/delete/' + campaign.id}" sec:authorize="hasAuthority('COORDINATOR')" class="fa fa-remove fa-2x"></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

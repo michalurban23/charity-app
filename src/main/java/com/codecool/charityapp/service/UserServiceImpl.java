@@ -2,7 +2,7 @@ package com.codecool.charityapp.service;
 
 import com.codecool.charityapp.dao.UserDetailsImpl;
 import com.codecool.charityapp.model.message.Message;
-import com.codecool.charityapp.model.PasswordDTO;
+import com.codecool.charityapp.dto.PasswordDTO;
 import com.codecool.charityapp.model.person.user.Role;
 import com.codecool.charityapp.model.person.user.User;
 import com.codecool.charityapp.repository.UserRepository;

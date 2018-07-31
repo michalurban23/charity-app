@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en"><!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/--></head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <h2>Add / Remove Contacts</h2>
+    <h3 th:text="${campaign.name}"></h3>
+    <div>
+        <form class="form-horizontal" th:object="${campaign}" th:action="@{/campaigns}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{name}"/>
+            <ul>
+                <li th:each="contact: ${contacts}">
+                    <label
+                        th:for="${contact.id}"
+                        th:text="${contact.getFullName()}"></label>
+                    <input type="checkbox"
+                        th:field="*{contacts}"
+                        th:value="${contact.id}"
+                        th:name="${contact.id}" />
+                </li>
+            </ul>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

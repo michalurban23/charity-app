@@ -1,4 +1,4 @@
-package com.codecool.charityapp.model;
+package com.codecool.charityapp.dto;
 
 import com.codecool.charityapp.model.person.user.User;
 import org.springframework.stereotype.Component;
